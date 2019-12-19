@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9be09718-ed6b-4b12-b1b5-a46abb0d273f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Login/Login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Login/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Logo/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Button/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Input/Input.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input/Input.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Input/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1576761654378</updated>
       <workItem from="1576761657305" duration="6538000" />
-      <workItem from="1576788997055" duration="1747000" />
+      <workItem from="1576788997055" duration="2750000" />
     </task>
     <servers />
   </component>
@@ -112,9 +106,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1576790603170" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1576772274999">
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1576791476335">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1576772274999" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1576791476335" />
   </component>
 </project>

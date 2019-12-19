@@ -3,7 +3,7 @@ import './Button.css';
 
 const Button = ({ onClick, isDisabled }) => {
     return (
-        <button disabled={isDisabled} ionClick={onClick} className="button button_validation">Войти</button>
+        <button disabled={isDisabled} onClick={onClick} className="button button_validation">Войти</button>
     );
 };
 

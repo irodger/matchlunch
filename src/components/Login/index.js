@@ -6,7 +6,7 @@ import Button from "../Button";
 
 import './Login.css';
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const [type, setType] = useState(null);
   const [value, setValue] = useState('');
 
@@ -14,22 +14,29 @@ const Login = () => {
     setValue(e.currentTarget.value);
   };
 
-  const onButtonClick = () => {
+  const onSubmit = (event) => {
+    event.preventDefault();
+
     const types = ['success', 'error'];
     const randTypeId = Math.floor(Math.random() * 2);
 
     setType(types[randTypeId]);
+
+    console.log(type)
+    if (type) {
+      if (type !== 'error') setUser(value);
+    }
   };
 
   return (
-    <form className="login">
+    <form className="login" onSubmit={onSubmit}>
       <div className="login__row">
         <Input value={value} onChange={onInputChange} isError={type === 'error'} />
         <InlineNotice type={type}/>
       </div>
 
       <div className="login__row">
-        <Button isDisabled={!value} onClick={onButtonClick} />
+        <Button isDisabled={!value} onClick={onSubmit} />
       </div>
     </form>
   );

@@ -1,41 +1,22 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-import Button from './components/Button';
-import Input from './components/Input';
-import InlineNotice from "./components/InlineNotice";
+import Logo from './components/Logo';
+import Login from "./components/Login";
 
 function App() {
-    const [type, setType] = useState(null);
-
-    const onButtonClick = () => {
-        const types = ['success', 'error'];
-        const randTypeId = Math.floor(Math.random() * 2);
-
-        console.log(randTypeId);
-
-        setType(types[randTypeId]);
-    };
-
     return (
         <div className="App">
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" placeholder="Твой Slack Email" />
+                <Logo className="App-logo" />
             </header>
             <div className="App-content">
-                <div className="App-content__row">
-                    <Input />
-                    <InlineNotice type={type}/>
-                </div>
-                <div className="App-content__row">
-                    <Button onClick={onButtonClick} />
-                </div>
+                <Login />
             </div>
             <div className="App-footer">
                 <p className="App-footer__text">HR Hackathon © Space307, 2019</p>
                 <p className="App-footer__text App-footer__text_team">
-                    <a href="" className="team-link">Match Lunch Team</a>
+                    <a href="/" className="team-link">Match Lunch Team</a>
                 </p>
             </div>
         </div>

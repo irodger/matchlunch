@@ -8,6 +8,7 @@
     position: absolute;
     left: 16px;
     top: 50%;
+    pointer-events: none;
     transform: translateY(-50%);
 }
 
@@ -16,6 +17,7 @@
     font-size: 18px;
     top: 16px;
     left: 56px;
+    pointer-events: none;
     transition: font-size 0.2s ease, top 0.2s ease;
 }
 

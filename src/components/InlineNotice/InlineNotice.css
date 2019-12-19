@@ -1,0 +1,14 @@
+.inline-notice {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 0;
+}
+
+.inline-notice_success {
+    color: #1F74E0;
+}
+
+.inline-notice_error {
+    color: #FF5353;
+}

@@ -1,0 +1,49 @@
+.input {
+    position: relative;
+    max-width: 360px;
+    margin: auto;
+}
+
+.input__icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.input__label {
+    position: absolute;
+    font-size: 18px;
+    top: 16px;
+    left: 56px;
+    transition: font-size 0.2s ease, top 0.2s ease;
+}
+
+.input__label_active {
+    font-size: 12px;
+    top: 8px;
+}
+
+.input__field {
+    background: #FFFFFF;
+    border: 1px solid #F2F2F2;
+    border-radius: 8px;
+    height: 56px;
+    font-size: 16px;
+    width: 100%;
+    padding: 26px 16px 6px 56px;
+}
+
+.input__field_active {
+    background: #E6F1FF;
+    border: 1px solid #BEDAFE;
+}
+
+.input__field_error {
+    background: #FFE6E6;
+    border: 1px solid #FEBEBE;
+}
+
+.input__field:focus {
+    outline: none;
+}

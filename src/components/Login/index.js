@@ -15,21 +15,9 @@ class Login extends Component {
     isAuthed: false,
   };
 
-  componentDidMount() {
-    const socketData = {
-      id: localStorage.getItem('id'),
-      geo: localStorage.getItem('geo'),
-    };
-
-    this.socket = new WebSocket(WS_SERVER_URL + '/socket?id=' + socketData.id + '&geo=' + socketData.geo + '&transport=websocket');
-
-    this.socket.onclose = () => {
-      this.socket.close();
-    };
-  }
-
   onInputChange = (event) =>{
     this.setState({
+      fetching: false,
       type: null,
       value: event.currentTarget.value,
     });
@@ -45,43 +33,55 @@ class Login extends Component {
       if (status === 200) {
         this.setState({type: 'success'});
 
-        this.socket.onmessage = (event) => {
-          const response = JSON.parse(event.data);
+        localStorage.setItem('id', data.id);
 
-          if (data.id === response.id) {
-            localStorage.setItem('email', data.email);
-            localStorage.setItem('id', data.id);
-            localStorage.setItem('name', data.name);
-
-            this.setState({
-              value: data.email,
-              fetching: false
-            });
-
-            this.props.setUser(data.email);
-          }
-
-          // this.socket.close();
+        const socketData = {
+          id: localStorage.getItem('id'),
+          geo: localStorage.getItem('geo'),
         };
 
+        this.socket = new WebSocket(WS_SERVER_URL + '/socket?id=' + socketData.id + '&geo=' + socketData.geo + '&transport=websocket');
+
+        const socketAction = () => {
+          this.socket.onmessage = (event) => {
+            const response = JSON.parse(event.data);
+
+            if (data.id === response.id) {
+              localStorage.setItem('email', data.email);
+              localStorage.setItem('id', data.id);
+              localStorage.setItem('name', data.name);
+
+              this.setState({
+                value: data.email,
+                fetching: false
+              });
+
+              this.props.setUser(data.email);
+            }
+
+            this.socket.close();
+          };
+        };
+
+        setTimeout(socketAction, 1000);
 
         this.socket.onerror = (error) => {
           console.log('error' + error);
 
           this.setState({
-            fetching: !this.state.fetching,
+            fetching: false,
             type: 'error',
           });
 
           this.socket.close();
         };
-
-        this.setState({
-          fetching: !this.state.fetching,
-        });
       } else {
-        this.setState({ fetching: !this.state.fetching, type: 'error' })
+        this.setState({ type: 'error' })
       }
+
+      this.setState({
+        fetching: !this.state.fetching,
+      });
     });
   };
 

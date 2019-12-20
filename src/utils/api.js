@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-export const SERVER = 'e72d7fd3.ngrok.io';
+// export const SERVER = '64d3edfb.ngrok.io';
+export const SERVER = 'match-lunch-back.herokuapp.com';
 export const SERVER_URL = 'https://' + SERVER;
 export const WS_SERVER_URL = 'wss://' + SERVER;
 

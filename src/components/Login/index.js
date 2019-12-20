@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { request } from "../../utils/api";
+import React, { Component } from 'react';
+import { request, WS_SERVER_URL } from "../../utils/api";
 
 import Input from "../Input";
 import InlineNotice from "../InlineNotice";
@@ -7,88 +7,100 @@ import Button from "../Button";
 
 import './Login.css';
 
-const Login = ({ setUser }) => {
-  const [type, setType] = useState(null);
-  const [value, setValue] = useState('');
-  const [fetching, setFetching] = useState(false);
-
-
-  // useEffect(() => {
-  //   const socketData = {
-  //     id: localStorage.getItem('id'),
-  //     geo: localStorage.getItem('geo'),
-  //   };
-  //
-  //   // const ws = new WebSocket(WS_SERVER_URL + '/socket');
-  //   const ws = new WebSocket(WS_SERVER_URL + '/socket?id=' + socketData.id + '&geo=' + socketData.geo + '&transport=websocket');
-  //
-  //   ws.onopen = (event) => {
-  //     ws.send(JSON.stringify(socketData));
-  //     console.log(111, ws);
-  //   };
-  //
-  //   ws.onmessage = (event) => {
-  //     const response = JSON.parse(event.data);
-  //     console.log(response.data);
-  //
-  //     ws.close();
-  //   };
-  //
-  //   ws.onclose = () => {
-  //     ws.close();
-  //   };
-  //
-  //   return () => {
-  //     ws.close();
-  //   };
-  // });
-
-  const onInputChange = (e) => {
-    setType(null);
-    setValue(e.currentTarget.value);
+class Login extends Component {
+  state = {
+    type: null,
+    value: '',
+    fetching: false,
+    isAuthed: false,
   };
 
-  const onSubmit = (event) => {
+  componentDidMount() {
+    const socketData = {
+      id: localStorage.getItem('id'),
+      geo: localStorage.getItem('geo'),
+    };
+
+    this.socket = new WebSocket(WS_SERVER_URL + '/socket?id=' + socketData.id + '&geo=' + socketData.geo + '&transport=websocket');
+
+    this.socket.onclose = () => {
+      this.socket.close();
+    };
+  }
+
+  onInputChange = (event) =>{
+    this.setState({
+      type: null,
+      value: event.currentTarget.value,
+    });
+  };
+
+  onSubmit = (event) => {
     event.preventDefault();
 
     request('/auth', 'POST', {
-      email: value,
+      email: this.state.value,
       geo: localStorage.getItem('geo')
     }).then(({ data, status }) => {
-
       if (status === 200) {
-        localStorage.setItem('email', data.email);
-        localStorage.setItem('id', data.id);
-        localStorage.setItem('name', data.name);
+        this.socket.onmessage = (event) => {
+          const response = JSON.parse(event.data);
 
-        setFetching(!fetching);
-        setType('success');
+          if (data.id === response.id) {
+            localStorage.setItem('email', data.email);
+            localStorage.setItem('id', data.id);
+            localStorage.setItem('name', data.name);
 
-        setTimeout(()=> setUser(data.email), 3500)
-        // setUser(data.email);
+            this.setState({
+              value: data.email,
+              type: 'success',
+              fetching: false
+            });
+
+            this.props.setUser(data.email);
+          }
+
+          this.socket.close();
+        };
+
+
+        this.socket.onerror = (error) => {
+          console.log('error' + error);
+
+          this.setState({
+            fetching: !this.state.fetching,
+            type: 'error',
+          });
+        };
+
+        this.setState({
+          fetching: !this.state.fetching,
+        });
       } else {
-        setFetching(!fetching);
-        setType('error');
+        this.setState({ fetching: !this.state.fetching, type: 'error' })
       }
     });
   };
 
-  return (
-    <form className="login" onSubmit={onSubmit}>
-      <div className="login__row">
-        <Input value={value} onChange={onInputChange} isError={type === 'error'} />
-        <InlineNotice type={type}/>
-      </div>
+  render() {
 
-      <div className="login__row">
-        <Button isDisabled={!value || fetching} onClick={onSubmit} >
-          {
-            type !== 'success' ? 'Login' : 'Done!'
-          }
-        </Button>
-      </div>
-    </form>
-  );
-};
+    return (
+        <form className="login" onSubmit={this.onSubmit}>
+          <div className="login__row">
+            <Input value={this.state.value} onChange={this.onInputChange} isError={this.state.type === 'error'} />
+            <InlineNotice type={this.state.type}/>
+          </div>
+
+          <div className="login__row">
+            <Button isDisabled={!this.state.value || this.state.fetching} onClick={this.onSubmit} >
+              {
+                this.state.type !== 'success' ? 'Login' : 'Done!'
+              }
+            </Button>
+          </div>
+        </form>
+    );
+  }
+}
 
 export default Login;

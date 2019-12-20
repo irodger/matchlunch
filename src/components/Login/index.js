@@ -43,6 +43,8 @@ class Login extends Component {
       geo: localStorage.getItem('geo')
     }).then(({ data, status }) => {
       if (status === 200) {
+        this.setState({type: 'success'});
+
         this.socket.onmessage = (event) => {
           const response = JSON.parse(event.data);
 
@@ -53,14 +55,13 @@ class Login extends Component {
 
             this.setState({
               value: data.email,
-              type: 'success',
               fetching: false
             });
 
             this.props.setUser(data.email);
           }
 
-          this.socket.close();
+          // this.socket.close();
         };
 
 
@@ -71,6 +72,8 @@ class Login extends Component {
             fetching: !this.state.fetching,
             type: 'error',
           });
+
+          this.socket.close();
         };
 
         this.setState({

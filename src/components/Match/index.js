@@ -107,7 +107,7 @@ const Match = ({ onChangeTheme }) => {
       <div className={classNames("match__fire", {'match__fire_searching': isSearching})}>
         {
           isFounded ? (
-            <a href="https://hrackatonsht.slack.com/team/URHA0Q6NN" target="_blank" rel="noopener noreferrer" className="button">Lunch partner found</a>
+            <a href="https://spaceducks.slack.com/archives/DRML1D4QZ" target="_blank" rel="noopener noreferrer" className="button">See you in Slack</a>
           ) : (
             <Button theme={theme} isDisabled={isSearching} onClick={onStartSearching}>
               {

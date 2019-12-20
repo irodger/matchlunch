@@ -49,16 +49,18 @@ const Match = ({ onChangeTheme }) => {
     // setTimeout(() => { setFounded(!isFounded) }, 3000 );
 
     const { id, geo, email } = window.localStorage;
-    const query = `id=${id}&geo=${geo}&email=${email}&opponents=${theme === 'duo' ? 1 : 2}`
+    const query = `id=${id}&geo=${geo}&email=${email}&opponents=${theme === 'duo' ? 2 : 3}`
 
     request(`/querrify?${query}`, 'get').then(({ status }) => {
       if (status === 200) {
-        setFounded(!isFounded)
+
+
+        setTimeout(() => setFounded(!isFounded), 9000);
       } else {
         console.log('error');
       }
 
-      setSearching(!isSearching);
+      setTimeout(() => setSearching(!isSearching), 9000);
     });
   };
 
@@ -105,7 +107,7 @@ const Match = ({ onChangeTheme }) => {
       <div className={classNames("match__fire", {'match__fire_searching': isSearching})}>
         {
           isFounded ? (
-            <a href="/" className="button">Lunch partner found</a>
+            <a href="https://hrackatonsht.slack.com/team/URHA0Q6NN" target="_blank" rel="noopener noreferrer" className="button">Lunch partner found</a>
           ) : (
             <Button theme={theme} isDisabled={isSearching} onClick={onStartSearching}>
               {

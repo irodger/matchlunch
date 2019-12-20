@@ -2,31 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9be09718-ed6b-4b12-b1b5-a46abb0d273f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/DuckFace/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Match/IconQuote.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Match/Match.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Match/MatchTrigger.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Match/MatchTrigger.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Match/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MatchScene/DuoDucks.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MatchScene/DuoDucks.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MatchScene/MatchScene.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MatchScene/TrioDucks.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MatchScene/TrioDucks.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MatchScene/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/constants/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Button/Button.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/Button.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Input/Input.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input/Input.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Logo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Logo/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Match/Match.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Match/Match.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Match/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Match/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +75,7 @@
       <updated>1576761654378</updated>
       <workItem from="1576761657305" duration="6538000" />
       <workItem from="1576788997055" duration="14168000" />
-      <workItem from="1576807080079" duration="6417000" />
+      <workItem from="1576807080079" duration="7505000" />
     </task>
     <servers />
   </component>

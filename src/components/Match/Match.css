@@ -18,11 +18,10 @@
     line-height: 24px;
 }
 
-/*.match__description_active {*/
-/*    opacity: 1;*/
-/*    transform: translateY(0);*/
-/*    transition: transform 0.2s var(--anim-time) ease, opacity 0.2s var(--anim-time) ease;*/
-/*}*/
+.match__slack-icon {
+    width: 100px;
+    margin: auto;
+}
 
 .match__description-icon {
     position: absolute;

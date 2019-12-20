@@ -1,3 +1,15 @@
+:root {
+  --duo: #1F74E0;
+  --trio: #0CB5CC;
+  --duo-rgb: 31, 116, 224;
+  --trio-rgb: 12, 181, 204;
+  --anim-time: 0.3s;
+  --anim-bg: background-color var(--anim-time) ease;
+  --anim-color: color var(--anim-time) ease;
+  --anim-color-delay: color var(--anim-time) 0.25s ease;
+  --max-content-width: 360px;
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',

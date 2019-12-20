@@ -1,0 +1,75 @@
+.match-trigger {
+    position: relative;
+    border-radius: 8px;
+    margin: auto;
+    background-color: rgba(var(--duo-rgb), 0.1);
+    max-width: 360px;
+    width: 100%;
+    padding: 5px;
+    z-index: 1;
+}
+
+.match-trigger_duo {
+    background-color: rgba(var(--duo-rgb), 0.1);
+}
+
+.match-trigger_trio {
+    background-color: rgba(var(--trio-rgb), 0.1);
+}
+
+.match-trigger__button {
+    position: relative;
+    z-index: 3;
+    user-select: none;
+    width: calc(50% - 5px);
+    background: transparent;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+    height: 46px;
+    text-align: center;
+    color: #FFFFFF;
+    will-change: color;
+    transition: var(--anim-color-delay);
+}
+
+.match-trigger__back {
+    position: absolute;
+    z-index: 2;
+    width: calc(50% - 5px);
+    height: 46px;
+    border-radius: 8px;
+    left: 5px;
+    will-change: transform;
+    transform: translateX(0);
+    transition: transform 0.25s 0.2s ease-in, var(--anim-bg);
+}
+
+.match-trigger_duo .match-trigger__back {
+    background: var(--duo);
+}
+
+.match-trigger_trio .match-trigger__back {
+    background: var(--trio);
+    transform: translateX(100%);
+}
+
+.match-trigger__button:focus {
+    outline: none;
+}
+
+.match-trigger_duo .match-trigger__button {
+    color: var(--duo);
+}
+
+.match-trigger_trio .match-trigger__button {
+    color: var(--trio);
+}
+
+.match-trigger_duo .match-trigger__button:first-of-type {
+    color: #ffffff;
+}
+
+.match-trigger_trio .match-trigger__button:last-of-type {
+    color: #ffffff;
+}

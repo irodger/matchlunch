@@ -1,26 +1,48 @@
-import React, {useState} from 'react';
-import './App.css';
-
+import React, { useState} from 'react';
+import classNames from 'classnames';
+import { parseUrlStrParams } from './utils';
 import Logo from './components/Logo';
 import Login from "./components/Login";
+import Match from './components/Match';
+import DuckFace from "./components/DuckFace";
+
+import './App.css';
+
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(localStorage.getItem('email') || '');
+  const [theme, setTheme] = useState('duo');
+  const { geo = 'spb' } = parseUrlStrParams();
 
   const makeUser = (newUser) => {
     setUser(newUser);
   };
 
+  const onChangeTheme = (type) => {
+    setTheme(type);
+  };
+
+  if (user) localStorage.setItem('email', user);
+  if (geo) localStorage.setItem('geo', geo);
+
   return (
-    <div className="App">
+    <div className={classNames("App", {[`App_${theme}`]: theme})}>
       <header className="App-header">
-        <Logo className="App-logo"/>
+        <Logo
+          fill={theme === 'duo' ? '#1F74E0' : '#0CB5CC'}
+          className={classNames("App-logo", {'App-logo_logged': user})}
+          isLoggedIn={user}
+        />
       </header>
       <div className="App-content">
         {
           !user ?
-            <Login setUser={makeUser}/>
-            : null
+            <div className="App-login">
+              <DuckFace className="App-logo-duck" />
+
+              <Login setUser={makeUser}/>
+            </div>
+            : <Match onChangeTheme={onChangeTheme} />
         }
       </div>
       <div className="App-footer">

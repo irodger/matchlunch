@@ -1,14 +1,15 @@
 .button {
-    background: #1F74E0;
+    background: var(--duo);
     border-radius: 8px;
     color: #fff;
     font-weight: bold;
     font-size: 18px;
     line-height: 56px;
     text-align: center;
-    max-width: 360px;
+    max-width: var(--max-content-width);
     width: 100%;
     border: none;
+    transition: var(--anim-bg);
 }
 
 .button:focus {
@@ -17,4 +18,22 @@
 
 .button:active {
     box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+.button_duo {
+    background: var(--duo);
+}
+
+.button_trio {
+    background: var(--trio);
+}
+
+.button_duo[disabled] {
+    background: rgba(var(--duo-rgb), 0.1);
+    color: var(--duo);
+}
+
+.button_trio[disabled] {
+    background: rgba(var(--trio-rgb), 0.1);
+    color: var(--trio);
 }

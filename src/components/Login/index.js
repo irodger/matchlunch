@@ -22,7 +22,6 @@ const Login = ({ setUser }) => {
 
     setType(types[randTypeId]);
 
-    console.log(type)
     if (type) {
       if (type !== 'error') setUser(value);
     }
@@ -36,7 +35,11 @@ const Login = ({ setUser }) => {
       </div>
 
       <div className="login__row">
-        <Button isDisabled={!value} onClick={onSubmit} />
+        <Button isDisabled={!value} onClick={onSubmit} >
+          {
+            type !== 'success' ? 'Login' : 'Start searching'
+          }
+        </Button>
       </div>
     </form>
   );

@@ -1,10 +1,14 @@
 .App {
   text-align: center;
   min-height: 100vh;
-  background-image: linear-gradient(to top, rgba(31, 116, 224, 0.2) 0%, rgba(31, 116, 224, 0) 100%);
   display: flex;
   padding: 0 16px;
   flex-direction: column;
+  background-image: linear-gradient(to top, rgba(var(--duo-rgb), 0.2) 0%, rgba(31, 116, 224, 0) 100%);
+}
+
+.App_trio {
+  background-image: linear-gradient(to top, rgba(var(--trio-rgb), 0.2) 0%, rgba(31, 116, 224, 0) 100%);
 }
 
 .App-logo {
@@ -12,6 +16,29 @@
   margin-top: 40px;
   max-width: 300px;
   pointer-events: none;
+}
+
+.App-logo_logged {
+  height: auto;
+  margin-top: 56px;
+  max-width: 72px;
+}
+
+.App-logo-duck {
+  width: 100px;
+  margin: auto;
+}
+
+.App-login {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.App-content {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 /*@media (prefers-reduced-motion: no-preference) {*/
@@ -26,11 +53,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
@@ -40,10 +62,6 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.App-content {
-  margin-top: auto;
 }
 
 .App-footer {
@@ -61,6 +79,14 @@
 }
 
 .team-link {
-  color: #1F74E0;
+  color: var(--duo);
   text-decoration: none;
+}
+
+.App_duo .team-link {
+  color: var(--duo);
+}
+
+.App_trio .team-link {
+  color: var(--trio);
 }

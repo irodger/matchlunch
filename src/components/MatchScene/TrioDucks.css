@@ -1,0 +1,27 @@
+.trio-ducks {
+
+}
+
+.trio-ducks_animated .trio-ducks__duck_first {
+    animation: wave 1.8s 0.3s infinite ease-in-out alternate-reverse;
+}
+
+.trio-ducks_animated .trio-ducks__duck_second {
+    animation: wave 2s 0.2s infinite ease-in-out alternate-reverse;
+}
+
+.trio-ducks_animated .trio-ducks__duck_third {
+    animation: wave 2.3s 0.05s infinite ease-in-out alternate-reverse;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}

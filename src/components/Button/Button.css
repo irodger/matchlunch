@@ -14,6 +14,11 @@
     transition: var(--anim-bg);
 }
 
+.button[disabled] {
+    background: rgba(var(--duo-rgb), 0.1);
+    color: var(--duo);
+}
+
 .button:focus {
     outline: none;
 }

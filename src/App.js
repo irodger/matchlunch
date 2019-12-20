@@ -22,7 +22,6 @@ function App() {
     setTheme(type);
   };
 
-  if (user) localStorage.setItem('email', user);
   if (geo) localStorage.setItem('geo', geo);
 
   return (

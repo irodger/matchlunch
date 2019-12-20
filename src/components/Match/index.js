@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useSpring, animated } from 'react-spring';
+import { request} from "../../utils/api";
 
 import Button from '../Button';
 import IconQuote from "./IconQuote";
@@ -45,7 +46,20 @@ const Match = ({ onChangeTheme }) => {
   const onStartSearching = () => {
     setSearching(!isSearching);
 
-    setTimeout(() => { setFounded(!isFounded) }, 3000 );
+    // setTimeout(() => { setFounded(!isFounded) }, 3000 );
+
+    const { id, geo, email } = window.localStorage;
+    const query = `id=${id}&geo=${geo}&email=${email}&opponents=${theme === 'duo' ? 1 : 2}`
+
+    request(`/querrify?${query}`, 'get').then(({ status }) => {
+      if (status === 200) {
+        setFounded(!isFounded)
+      } else {
+        console.log('error');
+      }
+
+      setSearching(!isSearching);
+    });
   };
 
   return (

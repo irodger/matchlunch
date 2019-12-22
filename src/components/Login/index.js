@@ -11,6 +11,7 @@ class Login extends Component {
   state = {
     type: null,
     value: '',
+    doneMessage: 'Done',
     fetching: false,
     isAuthed: false,
   };
@@ -23,8 +24,30 @@ class Login extends Component {
     });
   };
 
+  onDone = () => {
+    const messages = [
+      'Check yo slack, bro 🙄',
+      'Press button in slack to continue',
+      'You\'re awesome! 🤗',
+      'Stop sending request! 😡',
+      '...',
+      'Our programmer hate me for this bug',
+      'Just press that button, not this',
+      'Stop doing this! See yo slack',
+    ];
+
+    this.setState({
+      doneMessage: messages[Math.floor(Math.random() * messages.length)],
+    })
+  };
+
   onSubmit = (event) => {
     event.preventDefault();
+
+    this.setState(
+      {
+        fetching: true,
+      });
 
     request('/auth', 'POST', {
       email: this.state.value,
@@ -80,7 +103,7 @@ class Login extends Component {
       }
 
       this.setState({
-        fetching: !this.state.fetching,
+        fetching: false,
       });
     });
   };
@@ -95,9 +118,9 @@ class Login extends Component {
           </div>
 
           <div className="login__row">
-            <Button isDisabled={!this.state.value || this.state.fetching} onClick={this.onSubmit} >
+            <Button isDisabled={!this.state.value || this.state.fetching} onClick={this.state.type !== 'success' ? this.onSubmit : this.onDone} >
               {
-                this.state.type !== 'success' ? 'Login' : 'Done!'
+                this.state.type !== 'success' ? 'Login' : this.state.doneMessage
               }
             </Button>
           </div>

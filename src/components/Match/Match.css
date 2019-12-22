@@ -21,6 +21,9 @@
 .match__slack-icon {
     width: 100px;
     margin: auto;
+    will-change: transform;
+    transform: rotate(0);
+    animation: spin 5s infinite linear;
 }
 
 .match__description-icon {
@@ -50,3 +53,12 @@
     color: var(--trio);
 }
 
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+
+}

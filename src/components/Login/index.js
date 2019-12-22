@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { request, WS_SERVER_URL } from "../../utils/api";
 
 import Input from "../Input";
@@ -7,24 +7,20 @@ import Button from "../Button";
 
 import './Login.css';
 
-class Login extends Component {
-  state = {
-    type: null,
-    value: '',
-    doneMessage: 'Done',
-    fetching: false,
-    isAuthed: false,
+
+const Login = ({ setUser }) => {
+  const [type, setType] = useState(null);
+  const [value, setValue] = useState('');
+  const [doneMessage, setDoneMessage] = useState('Done');
+  const [fetching, setFetching] = useState(false);
+
+  const onInputChange = (event) => {
+    setFetching(false);
+    setType(null);
+    setValue(event.currentTarget.value);
   };
 
-  onInputChange = (event) =>{
-    this.setState({
-      fetching: false,
-      type: null,
-      value: event.currentTarget.value,
-    });
-  };
-
-  onDone = () => {
+  const onDone = () => {
     const messages = [
       'Check yo slack, bro 🙄',
       'Press button in slack to continue',
@@ -36,97 +32,71 @@ class Login extends Component {
       'Stop doing this! See yo slack',
     ];
 
-    this.setState({
-      doneMessage: messages[Math.floor(Math.random() * messages.length)],
-    })
+    const randomItem = Math.floor(Math.random() * messages.length);
+    setDoneMessage(messages[randomItem]);
   };
 
-  onSubmit = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
 
-    this.setState(
-      {
-        fetching: true,
-      });
-
+    setFetching(true);
+    const geo = localStorage.getItem('geo');
     request('/auth', 'POST', {
-      email: this.state.value,
-      geo: localStorage.getItem('geo')
+      email: value,
+      geo,
     }).then(({ data, status }) => {
       if (status === 200) {
-        this.setState({type: 'success'});
+        setType('success');
+        const socketQuery = `/socket?id=${data.id}&geo=${geo}&transport=websocket`;
+        const socket = new WebSocket(WS_SERVER_URL + socketQuery);
 
-        localStorage.setItem('id', data.id);
+        socket.onmessage = (event) => {
+          const response = JSON.parse(event.data);
 
-        const socketData = {
-          id: localStorage.getItem('id'),
-          geo: localStorage.getItem('geo'),
+          if (data.id === response.id) {
+            localStorage.setItem('email', data.email);
+            localStorage.setItem('id', data.id);
+            localStorage.setItem('name', data.name);
+
+            setValue(data.email);
+            setUser(data.email);
+            setFetching(false);
+          }
+
+          socket.close();
         };
 
-        this.socket = new WebSocket(WS_SERVER_URL + '/socket?id=' + socketData.id + '&geo=' + socketData.geo + '&transport=websocket');
-
-        const socketAction = () => {
-          this.socket.onmessage = (event) => {
-            const response = JSON.parse(event.data);
-
-            if (data.id === response.id) {
-              localStorage.setItem('email', data.email);
-              localStorage.setItem('id', data.id);
-              localStorage.setItem('name', data.name);
-
-              this.setState({
-                value: data.email,
-                fetching: false
-              });
-
-              this.props.setUser(data.email);
-            }
-
-            this.socket.close();
-          };
-        };
-
-        setTimeout(socketAction, 1000);
-
-        this.socket.onerror = (error) => {
+        socket.onerror = (error) => {
           console.log('error' + error);
 
-          this.setState({
-            fetching: false,
-            type: 'error',
-          });
-
-          this.socket.close();
+          setFetching(false);
+          setType('error');
+          socket.close();
         };
       } else {
-        this.setState({ type: 'error' })
+        setType('error');
       }
 
-      this.setState({
-        fetching: false,
-      });
+      setFetching(false);
     });
   };
 
-  render() {
+  return (
+    <form className="login" onSubmit={onSubmit}>
+      <div className="login__row">
+        <Input value={value} onChange={onInputChange} isError={type === 'error'} />
+        <InlineNotice type={type}/>
+      </div>
 
-    return (
-        <form className="login" onSubmit={this.onSubmit}>
-          <div className="login__row">
-            <Input value={this.state.value} onChange={this.onInputChange} isError={this.state.type === 'error'} />
-            <InlineNotice type={this.state.type}/>
-          </div>
-
-          <div className="login__row">
-            <Button isDisabled={!this.state.value || this.state.fetching} onClick={this.state.type !== 'success' ? this.onSubmit : this.onDone} >
-              {
-                this.state.type !== 'success' ? 'Login' : this.state.doneMessage
-              }
-            </Button>
-          </div>
-        </form>
-    );
-  }
-}
+      <div className="login__row">
+        <Button isDisabled={!value || fetching} onClick={type !== 'success' ? onSubmit : onDone} >
+          {
+            type !== 'success' ? 'Login' : doneMessage
+          }
+        </Button>
+      </div>
+    </form>
+  );
+};
 
 export default Login;

@@ -46,21 +46,16 @@ const Match = ({ onChangeTheme }) => {
   const onStartSearching = () => {
     setSearching(!isSearching);
 
-    // setTimeout(() => { setFounded(!isFounded) }, 3000 );
+    const { id, geo, email } = window && window.localStorage;
+    const route = `/querrify?id=${id}&geo=${geo}&email=${email}&opponents=${theme === 'duo' ? 2 : 3}`;
 
-    const { id, geo, email } = window.localStorage;
-    const query = `id=${id}&geo=${geo}&email=${email}&opponents=${theme === 'duo' ? 2 : 3}`
-
-    request(`/querrify?${query}`, 'get').then(({ status }) => {
+    request(route, 'get').then(({ status }) => {
       if (status === 200) {
-
-
-        setTimeout(() => setFounded(!isFounded), 9000);
+        setTimeout(() => setFounded(!isFounded), 3000);
       } else {
         console.log('error');
       }
-
-      setTimeout(() => setSearching(!isSearching), 9000);
+      setSearching(!isSearching)
     });
   };
 
@@ -95,7 +90,6 @@ const Match = ({ onChangeTheme }) => {
           : null
       }
 
-
       {
         !isSearching && !isFounded?
           <div className="match__trigger">
@@ -107,7 +101,14 @@ const Match = ({ onChangeTheme }) => {
       <div className={classNames("match__fire", {'match__fire_searching': isSearching})}>
         {
           isFounded ? (
-            <a href="https://spaceducks.slack.com/archives/DRML1D4QZ" target="_blank" rel="noopener noreferrer" className="button">See you in Slack</a>
+            <a
+              href="https://spaceducks.slack.com/app_redirect?channel=DRML1D4QZ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button"
+            >
+              Check yo slack 🙌
+            </a>
           ) : (
             <Button theme={theme} isDisabled={isSearching} onClick={onStartSearching}>
               {

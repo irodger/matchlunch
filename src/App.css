@@ -81,6 +81,12 @@
 .team-link {
   color: var(--duo);
   text-decoration: none;
+  border: none;
+  background-color: transparent;
+}
+
+.team-link:focus {
+  outline: none;
 }
 
 .App_duo .team-link {

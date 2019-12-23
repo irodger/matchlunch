@@ -47,7 +47,7 @@ const Match = ({ onChangeTheme }) => {
     setSearching(!isSearching);
 
     const { id, geo, email } = window && window.localStorage;
-    const route = `/querrify?id=${id}&geo=${geo}&email=${email}&opponents=${theme === 'duo' ? 2 : 3}`;
+    const route = `/queue?id=${id}&geo=${geo}&email=${email}&opponents=${theme === 'duo' ? 2 : 3}`;
 
     request(route, 'get').then(({ status }) => {
       if (status === 200) {
